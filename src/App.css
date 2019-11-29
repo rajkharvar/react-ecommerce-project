@@ -1,3 +1,8 @@
 .App {
     font-family: 'Monda', sans-serif;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}

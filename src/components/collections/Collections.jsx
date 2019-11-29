@@ -1,9 +1,10 @@
 import React from 'react';
 
 import CollectionItem from '../collection-item/CollectionItem';
+import '../directory/directory.scss';
 
 const Collections = ({ details }) => (
-  <div>
+  <div className='directory-menu'>
     {details.map(detail => (
       <CollectionItem key={detail.id} {...detail} />
     ))}
