@@ -4,6 +4,24 @@ import 'firebase/firestore'
 
 import firebaseConfig from '../.env.local/keys'
 
+
+// saving user Profile 
+export const createUserProfile = async (userAuth, additionalData) => {
+    if (!userAuth) return;
+    const userRef = firestore.doc(`users/${userAuth.uid}`)
+    const snapShot = await userRef.get();
+    if (!snapShot.exists) {
+        try {
+            const { displayName, email } = userAuth
+            const createdAt = new Date()
+            userRef.set({ displayName, email, createdAt, ...additionalData })
+        } catch (e) {
+            console.log("Error occureed while creating a user object", e)
+        }
+
+    }
+}
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
