@@ -3,16 +3,24 @@ import React, { Component } from 'react';
 import { FormInput } from '../form-input/FormInput';
 import { CustomButton } from '../custom-button/CustomButton';
 import './sign-up.scss';
+import { auth, createUserProfile } from '../../firebase/firebase.utils';
 
 export default class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      password: '',
+      displayName: '',
       email: '',
       password: '',
       confirmPassword: ''
     };
+  }
+
+  checkPassword() {
+    if (this.state.password === this.setState.confirmPassword) {
+      return true;
+    }
+    return false;
   }
 
   handleChange = e => {
@@ -20,9 +28,30 @@ export default class SignUp extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    console.log(this.state);
+
+    const { displayName, email, password, confirmPassword } = this.state;
+    if (password != confirmPassword) {
+      alert("Password didn't match");
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserProfile(user, { displayName });
+      this.setState({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   render() {
@@ -41,8 +70,8 @@ export default class SignUp extends Component {
             required
           />
           <FormInput
-            type='Email'
-            label='mail'
+            type='email'
+            label='Email'
             value={email}
             name='email'
             onChange={this.handleChange}

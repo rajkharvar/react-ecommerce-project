@@ -20,6 +20,7 @@ export const createUserProfile = async (userAuth, additionalData) => {
         }
 
     }
+    return userRef
 }
 
 // Initialize Firebase
