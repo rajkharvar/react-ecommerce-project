@@ -12,18 +12,10 @@ import { connect } from 'react-redux'
 
 
 class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      currentUser: null
-    }
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
     const { setCurrentUser } = this.props
-    console.log(this.props)
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfile(userAuth)
@@ -45,7 +37,6 @@ class App extends React.Component {
         // this.setState({ currentUser: userAuth })
         setCurrentUser(userAuth)
       }
-      console.log(this.state)
     })
   }
 
