@@ -1,4 +1,4 @@
-import { ADD_ITEM } from './cartType'
+import { ADD_ITEM, TOGGLE_CART_HIDDEN } from './cartType'
 import { addToCart } from './cartUtils'
 
 const initState = {
@@ -12,6 +12,11 @@ const cartReducer = (state = initState, action) => {
       return {
         ...state,
         cartItems: addToCart(state.cartItems, action.payload)
+      }
+    case TOGGLE_CART_HIDDEN:
+      return {
+        ...state,
+        hidden: !state.hidden
       }
     default: return state
   }

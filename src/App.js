@@ -4,6 +4,7 @@ import './App.css';
 import Homepage from './pages/homepage/Homepage';
 import Header from './components/header/Header';
 import { Contact } from './pages/contact/Contact'
+import Checkout from './pages/checkout/Checkout'
 import ShopPage from './pages/shop/Shop';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/SignInAndSignUp';
 import { auth, createUserProfile } from './firebase/firebase.utils'
@@ -57,6 +58,7 @@ class App extends React.Component {
               this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
             )}
           />
+          <Route path="/checkout" component={Checkout} />
         </Switch>
       </div>
     );
