@@ -7,9 +7,8 @@ import './header.scss';
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/CartIcon';
 import CartDropdown from '../cart-dropdown/CartDropdown';
-import { toggleHidden } from '../../redux/cart/cartAction';
 
-const Header = ({ currentUser, hidden, toggleHidden }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className='header'>
     <Link className='option logo-container' to='/'>
       <Logo />
