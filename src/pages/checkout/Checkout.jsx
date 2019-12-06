@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { CheckoutItem } from '../../components/checkout-item/CheckoutItem';
-import './checkout.scss'
+import CheckoutItem from '../../components/checkout-item/CheckoutItem';
+import './checkout.scss';
 
 const Checkout = ({ cartItems }) => {
-  console.log(cartItems);
+  let total = 0;
+  cartItems.map(cartItem => {
+    total += cartItem.quantity * cartItem.price;
+  });
   return (
     <div className='checkout'>
       <div className='checkout-header'>
@@ -28,7 +31,7 @@ const Checkout = ({ cartItems }) => {
       {cartItems.map(cartItem => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <div className='total'>TOTAL: 0</div>
+      <div className='total'>TOTAL: ${total}</div>
     </div>
   );
 };

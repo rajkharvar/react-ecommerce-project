@@ -6,6 +6,8 @@ import { CustomButton } from '../custom-button/CustomButton';
 import { addToCart } from '../../redux/cart/cartAction';
 
 const ColItem = ({ item, addToCart }) => {
+  console.log('addToCart');
+  console.log(addToCart);
   const { name, price, imageUrl } = item;
   return (
     <div className='collection-item'>
@@ -19,9 +21,9 @@ const ColItem = ({ item, addToCart }) => {
         <span className='name'>{name}</span>
         <span className='price'>{price}</span>
       </div>
-        <CustomButton onClick={() => addToCart(item)} inverted>
-          Add to Cart
-        </CustomButton>
+      <CustomButton onClick={() => addToCart(item)} inverted>
+        Add to Cart
+      </CustomButton>
     </div>
   );
 };
