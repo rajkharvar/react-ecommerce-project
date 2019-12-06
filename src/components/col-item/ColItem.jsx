@@ -18,8 +18,10 @@ const ColItem = ({ item, addToCart }) => {
       <div className='collection-footer'>
         <span className='name'>{name}</span>
         <span className='price'>{price}</span>
-        <CustomButton onClick={() => addToCart(item)}>Add to Cart</CustomButton>
       </div>
+        <CustomButton onClick={() => addToCart(item)} inverted>
+          Add to Cart
+        </CustomButton>
     </div>
   );
 };
