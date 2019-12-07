@@ -5,13 +5,13 @@ import Homepage from './pages/homepage/Homepage';
 import Header from './components/header/Header';
 import { Contact } from './pages/contact/Contact'
 import Checkout from './pages/checkout/Checkout'
-import ShopPage from './pages/shop/Shop';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/SignInAndSignUp';
 import { auth, createUserProfile } from './firebase/firebase.utils'
 import setCurrentUser from './redux/user/userAction';
 import { connect } from 'react-redux'
 import { selectCurrentUser } from './redux/user/userSelector'
 import { createStructuredSelector } from 'reselect'
+import Shop from './pages/shop/Shop';
 
 
 class App extends React.Component {
@@ -53,7 +53,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/shop" component={ShopPage} />
+          <Route path="/shop" component={Shop} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/signin"
             render={() => (
