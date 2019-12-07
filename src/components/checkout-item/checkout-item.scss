@@ -25,7 +25,15 @@
     }
 
     .quantity {
-        padding-left: 20px;
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+
+        .arrow {
+            font-weight: bold;
+            padding: 0 5px;
+            cursor: pointer;
+        }
     }
 
     .remove-button {

@@ -1,5 +1,5 @@
-import { ADD_ITEM, TOGGLE_CART_HIDDEN, CLEAR_ITEM_FROM_CART } from './cartType'
-import { addToCart, clearItemFromCart } from './cartUtils'
+import { ADD_ITEM, TOGGLE_CART_HIDDEN, CLEAR_ITEM_FROM_CART, REMOVE_ITEM_FROM_CART } from './cartType'
+import { addToCart, removeItemFromCart, clearItemFromCart } from './cartUtils'
 
 const initState = {
   hidden: true,
@@ -22,6 +22,11 @@ const cartReducer = (state = initState, action) => {
       return {
         ...state,
         cartItems: clearItemFromCart(state.cartItems, action.payload)
+      }
+    case REMOVE_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: removeItemFromCart(state.cartItems, action.payload)
       }
     default: return state
   }

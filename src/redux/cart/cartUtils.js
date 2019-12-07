@@ -12,13 +12,16 @@ export const addToCart = (cartItems, cartData) => {
     return [...cartItems, { ...cartData, quantity: 1 }]
 }
 
-export const clearItemFromCart = (cartItems, cartData) => {
+export const removeItemFromCart = (cartItems, cartData) => {
     const checkIfExist = cartItems.find(cartItem => cartItem.id === cartData.id)
 
     if (checkIfExist.quantity === 1) {
         return cartItems.filter(cartItem => cartItem.id !== cartData.id)
     }
-
     return cartItems.map(cartItem =>
         cartItem.id === cartData.id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem)
+}
+
+export const clearItemFromCart = (cartItems, cartData) => {
+    return cartItems.filter(cartItem => cartItem.id !== cartData.id)
 }
