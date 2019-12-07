@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { selectCollection } from '../../redux/shop/shopSelector';
 import ColItem from '../../components/col-item/ColItem';
+import './collection.scss';
 
 const Collection = ({ collection }) => {
   const { title, items } = collection;
