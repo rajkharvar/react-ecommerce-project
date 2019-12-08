@@ -2,7 +2,20 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 
-import firebaseConfig from '../.env.local/keys'
+// import firebaseConfig from '../.env.local/keys'
+
+var firebaseConfig = {
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: "react-ecommerce-project-e303c.firebaseapp.com",
+    databaseURL: "https://react-ecommerce-project-e303c.firebaseio.com",
+    projectId: "react-ecommerce-project-e303c",
+    storageBucket: "react-ecommerce-project-e303c.appspot.com",
+    messagingSenderId: "118708469119",
+    appId: "1:118708469119:web:eb4c9748699efb80336e4a",
+    measurementId: "G-89M53H8RQD"
+};
+
+console.log(firebaseConfig)
 
 
 // saving user Profile 

@@ -34,7 +34,7 @@ const Checkout = ({ cartItems, total }) => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <div className='total'>TOTAL: ${total}</div>
-      {total ? <StripeButton /> : null}
+      {total ? <StripeButton price={total} /> : null}
     </div>
   );
 };
