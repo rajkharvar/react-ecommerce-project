@@ -15,7 +15,6 @@ var firebaseConfig = {
     measurementId: "G-89M53H8RQD"
 };
 
-console.log(firebaseConfig)
 
 
 // saving user Profile 
