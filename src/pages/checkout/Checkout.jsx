@@ -8,6 +8,7 @@ import {
   selectCartItemsTotal
 } from '../../redux/cart/cartSelector';
 import { createStructuredSelector } from 'reselect';
+import { StripeButton } from '../../components/stripe-button/StripeButton';
 
 const Checkout = ({ cartItems, total }) => {
   return (
@@ -33,6 +34,7 @@ const Checkout = ({ cartItems, total }) => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <div className='total'>TOTAL: ${total}</div>
+      {total ? <StripeButton /> : null}
     </div>
   );
 };
