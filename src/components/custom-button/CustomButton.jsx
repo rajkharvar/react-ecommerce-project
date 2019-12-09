@@ -1,19 +1,8 @@
 import React from 'react';
 
 import './custom-button.scss';
+import { CustomButtonContainer } from './CustomButtonContainer';
 
-export const CustomButton = ({
-  children,
-  googleAuth,
-  inverted,
-  ...otherProps
-}) => (
-  <button
-    {...otherProps}
-    className={`custom-button ${googleAuth ? 'google-auth' : ''} ${
-      inverted ? 'inverted' : ''
-    }`}
-  >
-    {children}
-  </button>
+export const CustomButton = ({ children, ...props }) => (
+  <CustomButtonContainer {...props}>{children}</CustomButtonContainer>
 );
