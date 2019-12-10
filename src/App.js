@@ -11,6 +11,7 @@ import setCurrentUser from './redux/user/userAction';
 import { connect } from 'react-redux'
 import { selectCurrentUser } from './redux/user/userSelector'
 import { createStructuredSelector } from 'reselect'
+import { fetchCollectionStartAsync } from './redux/shop/shopAction'
 import Shop from './pages/shop/Shop';
 
 
@@ -18,7 +19,8 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props
+    const { setCurrentUser, fetchCollectionStartAsync } = this.props
+    fetchCollectionStartAsync()
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfile(userAuth)
@@ -72,7 +74,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
