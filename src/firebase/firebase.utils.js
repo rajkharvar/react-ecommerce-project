@@ -2,8 +2,6 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 
-// import firebaseConfig from '../.env.local/keys'
-
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "react-ecommerce-project-e303c.firebaseapp.com",
@@ -17,7 +15,7 @@ var firebaseConfig = {
 
 
 
-// saving user Profile 
+// * saving user Profile 
 export const createUserProfile = async (userAuth, additionalData) => {
   if (!userAuth) return;
   const userRef = firestore.doc(`users/${userAuth.uid}`)
@@ -35,7 +33,7 @@ export const createUserProfile = async (userAuth, additionalData) => {
   return userRef
 }
 
-// * function converts snapshot to object
+// * function converts snapshot to object with title as key and items as value
 export const convertCollectionsSnapshotToMap = collections => {
   const transformedCollection = collections.docs.map(doc => {
     const { title, items } = doc.data();
@@ -53,6 +51,7 @@ export const convertCollectionsSnapshotToMap = collections => {
     return accumulator;
   }, {});
 };
+
 
 // * Adding localdata to firestore
 export const addCollectionsAndData = async (collectionKey, objectsToAdd) => {

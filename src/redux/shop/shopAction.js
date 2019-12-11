@@ -1,34 +1,37 @@
-import { FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_FAILURE, FECTH_COLLECTIONS_SUCCESS } from "./shopType";
-import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils'
+import ShopActionTypes from './shopType';
 
-// ? START
-export const fetchCollectionStart = () => ({
-  type: FETCH_COLLECTIONS_START
-})
+import {
+  firestore,
+  convertCollectionsSnapshotToMap
+} from '../../firebase/firebase.utils';
 
-// ! FAILURE
-export const fetchCollectionFailure = errorMessage => ({
-  type: FETCH_COLLECTIONS_FAILURE,
-  payload: errorMessage
-})
+export const fetchCollectionsStart = () => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_START
+});
 
-// * SUCCESS
-export const fetchCollectionSuccess = collectionsMap => ({
-  type: FECTH_COLLECTIONS_SUCCESS,
+export const fetchCollectionsSuccess = collectionsMap => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_SUCCESS,
   payload: collectionsMap
-})
+});
 
-// * This method can dispatch all action of shop based on condition
-export const fetchCollectionStartAsync = () => {
+export const fetchCollectionsFailure = errorMessage => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
+  payload: errorMessage
+});
+
+export const fetchCollectionsStartAsync = () => {
   return dispatch => {
-    const collectionRef = firestore.collection('collections')
-    dispatch(fetchCollectionStart())
-    collectionRef
-      .get()
-      .then(snapshot => {
-        const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
-        dispatch(fetchCollectionSuccess(collectionsMap))
-      })
-      .catch(error => dispatch(fetchCollectionFailure(error.message)))
-  }
-}
+    const collectionRef = firestore.collection('collections');
+    dispatch(fetchCollectionsStart());
+    try {
+      collectionRef
+        .get()
+        .then(snapshot => {
+          const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+          dispatch(fetchCollectionsSuccess(collectionsMap));
+        })
+    } catch (error) {
+      dispatch(fetchCollectionsFailure(error.message))
+    }
+  };
+};

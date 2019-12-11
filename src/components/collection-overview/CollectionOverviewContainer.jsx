@@ -13,7 +13,9 @@ const mapStateToProps = createStructuredSelector({
 // * Here WithSpinner is an Higher Order Component which receives an CollectionOverview as an argument
 // * isLoading is also passed to WithSpinner for loading state
 
-export const CollectionOverviewContainer = compose(
+const CollectionOverviewContainer = compose(
   connect(mapStateToProps),
   WithSpinner
 )(CollectionOverview);
+
+export default CollectionOverviewContainer;
