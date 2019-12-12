@@ -33,6 +33,16 @@ export const createUserProfile = async (userAuth, additionalData) => {
   return userRef
 }
 
+// * Check if current user session is available
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe()
+      resolve(userAuth)
+    }, reject)
+  })
+}
+
 // * function converts snapshot to object with title as key and items as value
 export const convertCollectionsSnapshotToMap = collections => {
   const transformedCollection = collections.docs.map(doc => {
