@@ -32,9 +32,9 @@ export const StripeButton = ({ price }) => {
         shippingAddress
         panelLabel='Pay now'
         amount={price * 100}
-        stripeKey={process.env.REACT_APP_STRIPE_KEY}
         description={`Your total is $${price}`}
         token={onToken}
+        stripeKey={process.env.REACT_APP_STRIPE_KEY}
       />
     </div>
   );
