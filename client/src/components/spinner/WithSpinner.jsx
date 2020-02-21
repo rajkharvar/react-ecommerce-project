@@ -5,9 +5,9 @@ import { SpinnerContainer, SpinnerOverlay } from './SpinnerContainer';
 const WithSpinner = WrappedComponent => {
   const Spinner = ({ isLoading, ...otherProps }) => {
     return isLoading ? (
-      <SpinnerContainer>
-        <SpinnerOverlay />
-      </SpinnerContainer>
+      <SpinnerOverlay>
+        <SpinnerContainer />
+      </SpinnerOverlay>
     ) : (
       <WrappedComponent {...otherProps} />
     );
